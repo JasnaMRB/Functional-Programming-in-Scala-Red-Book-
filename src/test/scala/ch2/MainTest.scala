@@ -32,7 +32,7 @@ class MainTest extends FlatSpec {
 
   behavior of "isSorted"
 
-  def lt(i1: Int, i2: Int): Boolean = i1 < i2
+  private def lt(i1: Int, i2: Int) = i1 < i2
 
   it should "return true if nothing in array" in
     assert(isSorted(Array(), lt))
@@ -57,4 +57,9 @@ class MainTest extends FlatSpec {
 
   "uncurry" should "uncurry a function" in
     assert(uncurry(curry(Math.min))(5,2) == 2)
+
+  private def addOne(i1: Int) = i1 + 1
+
+  "compose" should "compose two functions" in
+    assert(compose(addOne, addOne)(1) == 3)
 }
