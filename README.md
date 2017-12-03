@@ -38,7 +38,11 @@ Easiest options are Intellij for IDE or sbt for terminal.
 5. Interactive console:
     ```
     sbt:fp-in-scala-v2> console
-    scala> import ch1.Foo
-    scala> val foo = new Foo()
-    scala> foo.foo()
+    scala> import ch2.Main._
+    import ch2.Main._
+
+    scala> fib(5)
+    res0: Option[Int] = Some(5)
+
+    scala>
     ```
