@@ -1,6 +1,6 @@
 # Functional Programming in Scala (Take 2)
 
-**Spoiler alert**: contains answers to problems from *Functional Programming in Scala*.
+**Spoiler alert**: contains answers to exercises in *Functional Programming in Scala*.
 
 <img src="images/fp-in-scala-cover.jpg" height="384" width="306">
 
