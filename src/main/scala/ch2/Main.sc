@@ -7,3 +7,9 @@ isSorted[Int](
   Array(7, 9, 11, 6),
   (x, y) => x < y
 )
+
+curry(Math.min)(5)(1)
+
+1 + 1
+
+
