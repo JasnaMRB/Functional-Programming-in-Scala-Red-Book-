@@ -1,0 +1,9 @@
+# vim
+*.swp
+
+# builds
+target
+
+# Intellij
+.idea
+fp-in-scala-v2.iml
