@@ -2,8 +2,7 @@ package ch2
 
 object Main {
 
-  def identity(num: Int): Int = num
-
+  // Exercise 2.1
   def fib(num: Int): Int = {
     @annotation.tailrec
     def go(n: Int, current: Int, next: Int): Int = {
@@ -12,6 +11,19 @@ object Main {
     }
     go(num, 0, 1)
   }
+
+  // Exercise 2.2
+  def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
+    def go(idx: Int): Boolean = {
+      if (idx + 1 >= as.length) true
+      else if (!ordered(as(idx), as(idx+1))) false
+      else go(idx + 1)
+    }
+    go(0)
+  }
+
+  // Helpers
+  def identity(num: Int): Int = num
 
   def formatResult(name: String, n: Int, f: Int => Int): String =
     "The %s of %d is %d.".format(name, n, f(n))

@@ -24,11 +24,31 @@ class MainTest extends FlatSpec {
 
   behavior of "A formatResult"
 
-  it should "return correct string for identity" in {
+  it should "return correct string for identity" in
     assert(formatResult("identity", 42, identity) == "The identity of 42 is 42.")
-  }
 
-  it should "return correct string for fib" in {
+  it should "return correct string for fib" in
     assert(formatResult("fib", 7, fib) == "The fib of 7 is 13.")
-  }
+
+  behavior of "isSorted"
+
+  def lt(i1: Int, i2: Int): Boolean = i1 < i2
+
+  it should "return true if nothing in array" in
+    assert(isSorted(Array(), lt))
+
+  it should "return true if one thing in array" in
+    assert(isSorted(Array(7), lt))
+
+  it should "return true if two things are in sorted order" in
+    assert(isSorted(Array(5, 7), lt))
+
+  it should "return false if two things are in unsorted order" in
+    assert(!isSorted(Array(7,5), lt))
+
+  it should "return true if five things in sorted order" in
+    assert(isSorted(Array(2, 3, 5, 6, 7), lt))
+
+  it should "return false if five things in unsorted order" in
+    assert(!isSorted(Array(3, 5, 6, 2, 7), lt))
 }
