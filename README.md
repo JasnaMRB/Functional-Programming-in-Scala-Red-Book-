@@ -41,8 +41,8 @@ Easiest options are Intellij for IDE or sbt for terminal.
     scala> import ch2.Main._
     import ch2.Main._
 
-    scala> fib(5)
-    res0: Option[Int] = Some(5)
+    scala> fib(7)
+    res0: Int = 13
 
     scala>
     ```
