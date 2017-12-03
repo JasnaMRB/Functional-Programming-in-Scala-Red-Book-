@@ -6,3 +6,6 @@ target
 
 # Intellij
 .idea
+
+# osx
+.DS_Store
