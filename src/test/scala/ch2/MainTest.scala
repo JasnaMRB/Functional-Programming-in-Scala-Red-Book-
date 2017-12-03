@@ -52,8 +52,9 @@ class MainTest extends FlatSpec {
   it should "return false if five things in unsorted order" in
     assert(!isSorted(Array(3, 5, 6, 2, 7), lt))
 
-  behavior of "curry"
-
-  it should "curry a function" in
+  "curry" should "curry a function" in
     assert(curry(Math.min)(5)(2) == 2)
+
+  "uncurry" should "uncurry a function" in
+    assert(uncurry(curry(Math.min))(5,2) == 2)
 }

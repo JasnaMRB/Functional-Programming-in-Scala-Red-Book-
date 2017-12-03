@@ -8,8 +8,6 @@ isSorted[Int](
   (x, y) => x < y
 )
 
-curry(Math.min)(5)(1)
-
 1 + 1
 
 
