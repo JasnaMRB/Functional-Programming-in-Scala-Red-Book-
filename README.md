@@ -1,4 +1,6 @@
-# Functional Programming in Scala (Take 2)
+# Functional Programming in Scala
+
+A fork of [bryanesmith's repo](https://github.com/bryanesmith/fp-in-scala-v2), with my answers instead.
 
 **Spoiler alert**: contains answers to exercises in *Functional Programming in Scala*.
 
@@ -6,10 +8,10 @@
 
 ## Install
 
-Easiest options are Intellij for IDE or sbt for terminal.
+Easiest options are IntelliJ for IDE or sbt for terminal.
 
-### Intellij
-1. Install [Intellij](https://www.jetbrains.com/idea/download) (recommend 2017.2.5 or later)
+### IntelliJ
+1. Install [IntelliJ](https://www.jetbrains.com/idea/download) (recommend 2017.2.5 or later)
 2. Configure Java, Scala SDKs
     1. Go to File > Project Structure > SDKs, and add a JDK (recommend 1.8 or later)
     2. Go to Preferences > Plugins > Install JetBrains Plugin > Scala (recommended 2017.2.13 or later)
