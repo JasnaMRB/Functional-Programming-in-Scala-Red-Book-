@@ -6,6 +6,7 @@ import scala.{Either => _, Left => _, Option => _, Right => _} // hide std libra
   * @author jasnamrb
   */
 
+// Ex. 4.6
 sealed trait Either[+E,+A] {
   def map[B](f: A => B): Either[E, B] = ???
 
@@ -19,9 +20,20 @@ case class Left[+E](get: E) extends Either[E,Nothing]
 case class Right[+A](get: A) extends Either[Nothing,A]
 
 object Either {
+  // Ex. 4.7
   def traverse[E,A,B](es: List[A])(f: A => Either[E, B]): Either[E, List[B]] = ???
 
+  // Ex. 4.7 cont'd
   def sequence[E,A](es: List[Either[E,A]]): Either[E,List[A]] = ???
+
+  /* Ex. 4.8
+  In this implementation, map2 is only able to report one error, even if both the
+  name and the age are invalid. What would you need to change in order to report both
+  errors?Would you change map2 or the signature of mkPerson? Or could you create a new
+  data type that captures this requirement better than Either does, with some
+  additional structure? How would orElse, traverse, and sequence behave differently for
+  that data type?
+   */
 
   def mean(xs: IndexedSeq[Double]): Either[String, Double] =
     if (xs.isEmpty)
