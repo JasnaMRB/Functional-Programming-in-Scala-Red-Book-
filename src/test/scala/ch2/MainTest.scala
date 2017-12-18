@@ -1,8 +1,11 @@
 package ch2
 
-import ch2.Main._
 import org.scalatest.FlatSpec
+import Main._
 
+/**
+  * @author jasnamrb
+  */
 class MainTest extends FlatSpec {
   behavior of "A fib"
 
