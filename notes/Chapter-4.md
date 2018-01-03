@@ -45,6 +45,11 @@ or `None` (undefined, returned with invalid inputs)
   - Map for given key
   - `headOption`, `lastOption`
 - Like `List` with at most one item
+- For common pattern of exception handling, can be rewritten into a `Try`:
+    - ```def Try[A](a: => A): Option[A] =
+          try Some(a)
+          catch ( case e: Exception => None }
+       ```     
 
 #### Common usages
 
@@ -68,7 +73,7 @@ If you just want to know if a failure occurred, `Option`is good. But `Either` gi
 - Convention: `Right` = success and `Left` = failures.
 - Represents values that can be one of 2 things; "disjoiint union" of 2 types
 - defined `Either[LeftType, RightType]`
-- For common pattern of exception handling, can be rewritten into a `Try`:
+- Like `Option`, or common pattern of exception handling, can be rewritten into a `Try`:
   - ```def Try[A](a: => A): Either[Exception, A] =
         try Right(a)
         catch ( case e: Exception => Left(e) }
