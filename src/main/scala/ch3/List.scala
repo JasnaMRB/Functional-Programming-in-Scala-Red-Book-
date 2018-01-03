@@ -187,12 +187,5 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
-  // 3.24 HARD
-  def hasSubsequence[A](sup: List[A], subL: List[A]): Boolean = {
-    (sup, subL) match {
-      case (Nil, Nil) => true
-      case (Nil, Cons(_, _)) => false
-      case (Cons(_, _), Nil) => false
-      case (Cons(x, xs), Cons(y, ys)) => 
-  }
+
 }

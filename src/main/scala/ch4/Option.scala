@@ -18,9 +18,9 @@ sealed trait Option[+A] {
     case Some(a) => a
   }
 
-  def flatMap[B](f: A => Option[B]): Option[B] = map(f) getOrElse None
+  def flatMap[B](f: A => Option[B]): Option[B] = this map(f) getOrElse None
 
-  def orElse[B>:A](ob: => Option[B]): Option[B] = this map(Some(_)) getOrElse None
+  def orElse[B>:A](ob: => Option[B]): Option[B] = this map(Some(_)) getOrElse ob
 
   def filter(f: A => Boolean): Option[A] = this match {
     case Some(a) if f(a) => this
@@ -65,7 +65,7 @@ object Option {
   // Ex. 4.4
   def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
     case Nil => Some(Nil)
-    case h :: t => h flatMap (hh => sequence(t) map (hh :: _))
+    case x :: xs => x flatMap (xx => sequence(xs) map (xx :: _))
   }
 
   // Ex. 4.5

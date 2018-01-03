@@ -61,5 +61,15 @@ deferring error handling to the end
 
 ### `Either`
 
-TODO
+Unlike `Option`, can be used to add whatever info we want about failures. 
+If you just want to know if a failure occurred, `Option`is good. But `Either` gives us more info.
 
+- Like `Option`, has only 2 cases: `Left` and `Right`. Unlike `Option`, both cases carry a value. 
+- Convention: `Right` = success and `Left` = failures.
+- Represents values that can be one of 2 things; "disjoiint union" of 2 types
+- defined `Either[LeftType, RightType]`
+- For common pattern of exception handling, can be rewritten into a `Try`:
+  - ```def Try[A](a: => A): Either[Exception, A] =
+        try Right(a)
+        catch ( case e: Exception => Left(e) }
+     ```     
