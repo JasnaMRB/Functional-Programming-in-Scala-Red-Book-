@@ -54,8 +54,32 @@ object Option {
 
   // Ex. 4.2
   // the variance is the mean of math.pow(x - m, 2) for each element x in the sequence.
+  // can also use map if you redefine
   def variance(xs: Seq[Double]): Option[Double] = mean(xs) flatMap (m => mean(xs.map(x => math.pow(x - m, 2))))
 
+  /**
+    *
+    *   implicit class DoubleSeqOps(xs: Seq[Double]) {
+
+    // Exercise 4.2
+    lazy val toNel: Option[Seq[Double]] = xs match {
+      case Nil => None
+      case a => Some(a)
+    }
+
+    // Exercise 4.2
+    lazy val mean: Option[Double] =
+      xs.toNel.map(xs => xs.foldLeft(0.0)(_ + _) / xs.length)
+
+    // Exercise 4.2
+    lazy val variance: Option[Double] =
+      mean map { m => xs.map(a => Math.pow(a - m, 2)).sum }
+
+  }
+    */
+
+
+  
   // Ex 4.3
   def map2[A,B,C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = for {
     x <- a

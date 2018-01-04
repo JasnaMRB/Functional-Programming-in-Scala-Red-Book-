@@ -16,6 +16,10 @@ getOrElse`) and `Either`
 
 ## Referential transparency
 
+RT does not depend on context. Can be reasoned locally. `42 + 5`.
+
+Non-RT expressions are context-dependent. Requires global reasoning. `new Exception("fail")` means different things in different contexts.
+
 - global reasoning vs. local reasoning
 - context dependence vs. not
   
@@ -34,8 +38,7 @@ getOrElse`) and `Either`
 ## Good Alternatives to Exceptions
 
 Say upfront in *return type* that function won't always work as expected. 
-Defer to caller to handle error-handling. Reserve exception throwing for truly unrecoverable
-conditions.
+Defer to caller to handle error-handling. Reserve exception throwing for truly unrecoverable conditions.
 
 ### `Option`
 
@@ -50,6 +53,21 @@ or `None` (undefined, returned with invalid inputs)
           try Some(a)
           catch ( case e: Exception => None }
        ```     
+ - trampling: recursive computation; generic way of making something stack-safe
+
+- ScalaZ
+```
+\/.fromTryCatchNonFatal {
+  ...code that could throw a recoverable exception
+}```     
+
+##### Can be fatal
+- Constraint violations
+- Assertion failures - invariant violated
+- IOExceptions
+- typically `StackOverflow`
+- `OutOfMemory`
+
 
 #### Common usages
 
@@ -64,7 +82,31 @@ deferring error handling to the end
 - syntactic construct for lifting functions
 - Syntax: `for { ... } yield <something>`
 
+
+#### Lifting
+
+![lifting](https://dpzbhybb2pdcj.cloudfront.net/bjarnason/Figures/057fig01.jpg)
+
+Takes a function `A => B` and allows lifted function `F[A] => F[B]` to apply to a functor or monad `F[A]`. 
+Example is `map` in which we can operate on `Option[A]` value types with a function `A => B`, returning `Option[B]`.
+
+Or, `map` turns a function `f` of type `A => B` into a function of type `Option[A] => Option[B]`. 
+
+Any function we already have lying around can be transformed (via `lift`) to operate within the context of 
+ a single `Option` value.
+ 
+Turns it into a context 
+
+effectful programming - List, Option, Either
+
+lift is implemented differently for different types
+Also `applicative`, `point` or `pure` (?) in ScalaZ, Cats
+ 
 ### `Either`
+
+`Disjunction` or `\/` from ScalaZ can be used in `for` comprehensions, unlike `Either`.
+
+`\/` 
 
 Unlike `Option`, can be used to add whatever info we want about failures. 
 If you just want to know if a failure occurred, `Option`is good. But `Either` gives us more info.
@@ -78,3 +120,6 @@ If you just want to know if a failure occurred, `Option`is good. But `Either` gi
         try Right(a)
         catch ( case e: Exception => Left(e) }
      ```     
+     
+     
+ScalaZ - Validation -  
